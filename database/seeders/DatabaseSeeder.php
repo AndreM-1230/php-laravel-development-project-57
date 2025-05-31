@@ -156,12 +156,15 @@ class DatabaseSeeder extends Seeder
             Label::firstOrCreate($label);
         }
 
-        foreach ($users as $user) {
-            User::factory()->create([
-                'name' => $user['name'],
-                'email' => $user['email'],
-            ]);
+        if(!User::all()) {
+            foreach ($users as $user) {
+                User::factory()->create([
+                    'name' => $user['name'],
+                    'email' => $user['email'],
+                ]);
+            }
         }
+
 
         foreach ($tasks as $task_value) {
             $creator_id = rand(1, 14);
