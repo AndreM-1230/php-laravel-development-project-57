@@ -37,8 +37,7 @@
                 <select class="rounded border-gray-300 w-1/3" id="assigned_to_id" name="assigned_to_id">
                     <option value=""></option>
                     @foreach($users as $id => $name)
-                        <option value="{{ $id }}"
-                            @selected(old('assigned_to_id', $task->assigned_to_id ?? '') == $id)>
+                        <option value="{{ $id }}">
                             {{ $name }}
                         </option>
                     @endforeach
@@ -50,8 +49,7 @@
             <div>
                 <select class="rounded border-gray-300 w-1/3 h-32" name="labels[]" id="labels[]" multiple="">
                     @foreach($labels as $id => $name)
-                        <option value="{{ $id }}"
-                            @selected(in_array($id, old('labels', $task->labels->pluck('id')->toArray() ?? [])))>
+                        <option value="{{ $id }}">
                             {{ $name }}
                         </option>
                     @endforeach

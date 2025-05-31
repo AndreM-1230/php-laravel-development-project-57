@@ -58,6 +58,15 @@
                 <td>{{ $task->created_at->format('d.m.Y') }}</td>
                 @auth
                     <td>
+                        @if ($task->created_by_id == Auth::id())
+                            <a href="#" class="btn btn-sm text-red-600 hover:text-red-900" onclick="if(confirm('Вы уверены?')) { event.preventDefault(); document.getElementById('delete-form-{{ $task->id }}').submit();}">
+                                Удалить
+                            </a>
+                            <form id="delete-form-{{ $task->id }}" action="{{ route('tasks.destroy', $task) }}" method="POST" class="hidden">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        @endif
                         <a href="{{ route('tasks.edit', $task) }}" class="btn btn-sm btn-primary">Изменить</a>
                     </td>
                 @endauth

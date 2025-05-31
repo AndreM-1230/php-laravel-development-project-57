@@ -110,9 +110,9 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         if (Auth::id() !== $task->created_by_id) {
-            return back()->withErrors(['error' => __('Вы не можете удалить эту задачу')]);
+            return back()->with('error', __('Вы не можете удалить эту задачу'));
         }
-
+        $task->labels()->detach();
         $task->delete();
         return redirect()->route('tasks.index')->with('success', __('Задача успешно удалена'));
     }
