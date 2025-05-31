@@ -31,6 +31,10 @@ class TaskStatusController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|unique:task_statuses|max:255'
+        ],
+        [
+            'name.unique' => 'Статус с таким именем уже существует',
+            'name.required' => 'Это обязательное поле',
         ]);
 
         TaskStatus::create($validated);
@@ -60,6 +64,10 @@ class TaskStatusController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|unique:task_statuses,name,' . $taskStatus->id . '|max:255'
+        ],
+        [
+            'name.unique' => 'Статус с таким именем уже существует',
+            'name.required' => 'Это обязательное поле',
         ]);
 
         $taskStatus->update($validated);

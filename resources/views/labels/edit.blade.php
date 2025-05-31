@@ -11,6 +11,9 @@
             <div class="mt-2">
                 <input class="rounded border-gray-300 w-1/3" type="text" name="name" id="name" value="{{ old('name', $label->name ?? '') }}">
             </div>
+            @if($errors->get('name'))
+                <div class="text-rose-600">{{$errors->get('name')[0]}}</div>
+            @endif
             <div class="mt-2">
                 <label for="description">Описание</label>
             </div>
