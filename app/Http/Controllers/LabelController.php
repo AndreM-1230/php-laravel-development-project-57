@@ -29,14 +29,16 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:labels|max:255',
-            'description' => 'nullable|string'
-        ],
-        [
-            'name.unique' => 'Метка с таким именем уже существует',
-            'name.required' => 'Это обязательное поле',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|unique:labels|max:255',
+                'description' => 'nullable|string'
+            ],
+            [
+                'name.unique' => 'Метка с таким именем уже существует',
+                'name.required' => 'Это обязательное поле',
+            ]
+        );
 
         Label::create($validated);
         return redirect()->route('labels.index')->with('success', __('Метка успешно создана'));
@@ -55,14 +57,16 @@ class LabelController extends Controller
      */
     public function update(Request $request, Label $label)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255|unique:labels,name,' . $label->id,
-            'description' => 'nullable|string'
-        ],
-        [
-            'name.unique' => 'Метка с таким именем уже существует',
-            'name.required' => 'Это обязательное поле',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|max:255|unique:labels,name,' . $label->id,
+                'description' => 'nullable|string'
+            ],
+            [
+                'name.unique' => 'Метка с таким именем уже существует',
+                'name.required' => 'Это обязательное поле',
+            ]
+        );
 
         $label->update($validated);
         return redirect()->route('labels.index')->with('success', __('Метка успешно изменена'));

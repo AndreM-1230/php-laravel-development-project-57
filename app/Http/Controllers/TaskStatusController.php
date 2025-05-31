@@ -29,13 +29,15 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:task_statuses|max:255'
-        ],
-        [
-            'name.unique' => 'Статус с таким именем уже существует',
-            'name.required' => 'Это обязательное поле',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|unique:task_statuses|max:255'
+            ],
+            [
+                'name.unique' => 'Статус с таким именем уже существует',
+                'name.required' => 'Это обязательное поле',
+            ]
+        );
 
         TaskStatus::create($validated);
         return redirect()->route('task_statuses.index')->with('success', __('Статус успешно создан'));
@@ -62,13 +64,15 @@ class TaskStatusController extends Controller
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:task_statuses,name,' . $taskStatus->id . '|max:255'
-        ],
-        [
-            'name.unique' => 'Статус с таким именем уже существует',
-            'name.required' => 'Это обязательное поле',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|unique:task_statuses,name,' . $taskStatus->id . '|max:255'
+            ],
+            [
+                'name.unique' => 'Статус с таким именем уже существует',
+                'name.required' => 'Это обязательное поле',
+            ]
+        );
 
         $taskStatus->update($validated);
         return redirect()->route('task_statuses.index')->with('success', __('Статус успешно изменён'));

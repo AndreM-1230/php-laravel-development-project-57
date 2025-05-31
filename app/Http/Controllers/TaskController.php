@@ -49,16 +49,18 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'nullable|string',
-            'status_id' => 'required|exists:task_statuses,id',
-            'assigned_to_id' => 'nullable|exists:users,id'
-        ],
-        [
-            'name.required' => 'Это обязательное поле',
-            'status_id.required' => 'Это обязательное поле',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|max:255',
+                'description' => 'nullable|string',
+                'status_id' => 'required|exists:task_statuses,id',
+                'assigned_to_id' => 'nullable|exists:users,id'
+            ],
+            [
+                'name.required' => 'Это обязательное поле',
+                'status_id.required' => 'Это обязательное поле',
+            ]
+        );
 
         $task = new Task($validated);
         $task->created_by_id = Auth::id();
@@ -94,16 +96,18 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'nullable|string',
-            'status_id' => 'required|exists:task_statuses,id',
-            'assigned_to_id' => 'nullable|exists:users,id'
-        ],
-        [
-            'name.required' => 'Это обязательное поле',
-            'status_id.required' => 'Это обязательное поле',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|max:255',
+                'description' => 'nullable|string',
+                'status_id' => 'required|exists:task_statuses,id',
+                'assigned_to_id' => 'nullable|exists:users,id'
+            ],
+            [
+                'name.required' => 'Это обязательное поле',
+                'status_id.required' => 'Это обязательное поле',
+            ]
+        );
 
         $task->update($validated);
         if ($request->has('labels')) {
