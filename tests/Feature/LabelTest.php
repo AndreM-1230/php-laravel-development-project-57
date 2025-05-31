@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Label;
 use App\Models\Task;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
