@@ -38,12 +38,12 @@
                     </a>
                     @endguest
                     @auth
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2" onclick=" event.preventDefault(); document.getElementById('logout-form').submit();">
                             Выход
-                        </button>
-                    </form>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                            @csrf
+                        </form>
                     @endauth
                 </div>
 
