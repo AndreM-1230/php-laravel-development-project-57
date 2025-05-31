@@ -59,15 +59,6 @@
                 @auth
                     <td>
                         <a href="{{ route('tasks.edit', $task) }}" class="btn btn-sm btn-primary">Изменить</a>
-                        @if(Auth::id() === $task->created_by_id)
-                            <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены?')">
-                                    Удалить
-                                </button>
-                            </form>
-                        @endif
                     </td>
                 @endauth
             </tr>

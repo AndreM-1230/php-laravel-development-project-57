@@ -72,7 +72,7 @@ class TaskStatusController extends Controller
     public function destroy(TaskStatus $taskStatus)
     {
         if ($taskStatus->tasks()->exists()) {
-            return back()->withErrors(['error' => __('Не удалось удалить статус')]);
+            return back()->with('error', __('Не удалось удалить статус'));
         }
 
         $taskStatus->delete();

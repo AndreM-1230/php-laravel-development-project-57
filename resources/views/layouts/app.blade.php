@@ -68,10 +68,17 @@
     </header>
     <section class="bg-white dark:bg-gray-900">
         <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
+            @if(session('success'))
+                <div class="alert alert-success " role="alert">{{ session('success') }}</div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger " role="alert">{{ session('error') }}</div>
+            @endif
             <div class="grid col-span-full">
                 @if (isset($title))
                     <h1 class="mb-5">{{$title}}</h1>
                 @endif
+
             @yield('content')
             </div>
         </div>
