@@ -18,17 +18,13 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = QueryBuilder::for(Task::query())
-        ->with(['status', 'creator', 'assignee', 'labels'])
+        $tasksQuery = QueryBuilder::for(Task::query())
+            ->with(['status', 'creator', 'assignee']);
+        $tasks = $tasksQuery
             ->allowedFilters([
                 AllowedFilter::exact('status_id'),
                 AllowedFilter::exact('created_by_id'),
                 AllowedFilter::exact('assigned_to_id'),
-                AllowedFilter::callback('label_id', function ($query, $value) {
-                    $query->whereHas('labels', function ($q) use ($value) {
-                        $q->where('labels.id', $value);
-                    });
-                })
             ])
             ->paginate();
 
