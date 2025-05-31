@@ -23,7 +23,7 @@
                 <label for="status_id">Статус</label>
             </div>
             <div>
-                <select class="rounded border-gray-300 w-1/3" id="status_id" name="status_id" required>
+                <select class="rounded border-gray-300 w-1/3" id="status_id" name="status_id">
                     <option value=""></option>
                     @foreach($statuses as $id => $name)
                         <option value="{{ $id }}"
@@ -33,6 +33,9 @@
                     @endforeach
                 </select>
             </div>
+            @if($errors->get('status_id'))
+                <div class="text-rose-600">{{$errors->get('status_id')[0]}}</div>
+            @endif
             <div class="mt-2">
                 <label for="status_id">Исполнитель</label>
             </div>

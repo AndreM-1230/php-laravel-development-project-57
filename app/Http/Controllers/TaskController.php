@@ -57,6 +57,7 @@ class TaskController extends Controller
         ],
         [
             'name.required' => 'Это обязательное поле',
+            'status_id.required' => 'Это обязательное поле',
         ]);
 
         $task = new Task($validated);
@@ -101,6 +102,7 @@ class TaskController extends Controller
         ],
         [
             'name.required' => 'Это обязательное поле',
+            'status_id.required' => 'Это обязательное поле',
         ]);
 
         $task->update($validated);
