@@ -22,10 +22,12 @@
                 <td>{{ $status->created_at->format('d.m.Y') }}</td>
                 <td>
                 @auth
-                    <form action="{{ route('task_statuses.destroy', $status) }}" method="POST">
+                    <a href="#" class="btn btn-sm text-red-600 hover:text-red-900" onclick="if(confirm('Вы уверены?')) { event.preventDefault(); document.getElementById('delete-form-{{ $status->id }}').submit();}">
+                        Удалить
+                    </a>
+                    <form id="delete-form-{{ $status->id }}" action="{{ route('task_statuses.destroy', $status) }}" method="POST" class="hidden">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm text-red-600 hover:text-red-900" onclick="return confirm('Вы уверены?')">Удалить</button>
                     </form>
                     <a class="text-blue-600 hover:text-blue-900" href="{{ route('task_statuses.edit', $status) }}">Изменить</a>
                 @endauth

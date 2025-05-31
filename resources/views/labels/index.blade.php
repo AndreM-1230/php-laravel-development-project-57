@@ -25,10 +25,12 @@
                 <td>{{ $label->created_at }}</td>
                 <td>
                     @auth
-                    <form action="{{ route('labels.destroy', $label) }}" method="POST">
+                    <a href="#" class="btn btn-sm text-red-600 hover:text-red-900" onclick="if(confirm('Вы уверены?')) { event.preventDefault(); document.getElementById('delete-form-{{ $label->id }}').submit();}">
+                        Удалить
+                    </a>
+                    <form id="delete-form-{{ $label->id }}" action="{{ route('labels.destroy', $label) }}" method="POST" class="hidden">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm text-red-600 hover:text-red-900" onclick="return confirm('Вы уверены?')">Удалить</button>
                     </form>
                     <a class="text-blue-600 hover:text-blue-900" href="{{ route('labels.edit', $label) }}">Изменить</a>
                     @endauth
